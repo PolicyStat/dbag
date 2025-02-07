@@ -3,8 +3,6 @@ import datetime
 from django.db import models
 from django.urls import reverse
 
-from jsonfield import JSONField
-
 class MetricCollectionDisabled(Exception):
     """
     Thrown when we attempt to collect a new ``DataSample`` for a ``Metric`` that
@@ -58,7 +56,7 @@ class Metric(models.Model):
 
     """
     metric_type_label = models.CharField(max_length=200)
-    metric_properties = JSONField(default="{}")
+    metric_properties = models.JSONField(default=dict)
 
     slug = models.CharField(max_length=75, unique=True)
     label = models.CharField(max_length=75)

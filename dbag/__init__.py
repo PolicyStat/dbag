@@ -3,7 +3,7 @@ Dbag- Easy time-series metrics and dashboarding
 """
 import copy
 
-__version__ = '0.1.3'
+__version__ = '0.2.0'
 __author__ = 'Wes Winham'
 __contact__ = 'winhamwr@gmail.com'
 __homepage__ = 'http://github.com/winhamwr/dbag'
@@ -31,4 +31,3 @@ def autodiscover():
             # this import will have to reoccur on the next request and this
             # could raise NotRegistered and AlreadyRegistered exceptions
             dbag_manager._registry = before_import_registry
-

@@ -24,6 +24,7 @@ if not settings.configured:
         ],
         ROOT_URLCONF='dbag.urls',
         DEBUG=False,
+        SECRET_KEY='dummy-key-for-testing',
         TEMPLATE_STRING_IF_INVALID="INVALID_TEMPLATE_VARIABLE",
         TEMPLATES=[{
             'BACKEND': 'django.template.backends.django.DjangoTemplates',

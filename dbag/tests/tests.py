@@ -188,3 +188,32 @@ class ClientTests(TestCase):
         self.assertContains(response, 'Number of User Accounts')
         self.assertNotContains(response, 'class="no-data-collected"')
         self.assertNotContains(response, settings.TEMPLATE_STRING_IF_INVALID)
+
+
+class JSONFieldTest(TestCase):
+    """
+    Test the update from django-jsonfield to Django's models.JSONField
+    """
+    def test_json_field(self):
+        # Test storing and retrieving JSON
+        metric = Metric.objects.create(
+            metric_type_label="type_label",
+            metric_properties={"key": "metric_value"},
+            slug="slug",
+            label="label",
+            unit_label="unit_label",
+            unit_label_plural="unit_labels"
+        )
+
+        saved_metric = Metric.objects.get(id=metric.id)
+        self.assertEqual(saved_metric.metric_properties["key"], "metric_value")
+
+        # Test the default value for metric_properties
+        empty_metric_properties = Metric.objects.create(
+            metric_type_label="type_label_2",
+            slug="slug_2",
+            label="label_2",
+            unit_label="unit_label_2",
+            unit_label_plural="unit_labels_2"
+        )
+        self.assertEqual(empty_metric_properties.metric_properties, {})
